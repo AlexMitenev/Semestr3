@@ -44,12 +44,14 @@
             this.labelY3 = new System.Windows.Forms.Label();
             this.labelValue = new System.Windows.Forms.Label();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.random = new System.Windows.Forms.Button();
+            this.textExep = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
             // DrawIt
             // 
-            this.DrawIt.Location = new System.Drawing.Point(542, 347);
+            this.DrawIt.Location = new System.Drawing.Point(542, 336);
             this.DrawIt.Name = "DrawIt";
             this.DrawIt.Size = new System.Drawing.Size(75, 23);
             this.DrawIt.TabIndex = 0;
@@ -180,12 +182,31 @@
             this.pictureBox1.TabStop = false;
             this.pictureBox1.Paint += new System.Windows.Forms.PaintEventHandler(this.pictureBox1_Paint);
             // 
+            // random
+            // 
+            this.random.Location = new System.Drawing.Point(542, 365);
+            this.random.Name = "random";
+            this.random.Size = new System.Drawing.Size(75, 23);
+            this.random.TabIndex = 16;
+            this.random.Text = "random";
+            this.random.UseVisualStyleBackColor = true;
+            this.random.Click += new System.EventHandler(this.random_Click);
+            // 
+            // textExep
+            // 
+            this.textExep.Location = new System.Drawing.Point(38, 363);
+            this.textExep.Name = "textExep";
+            this.textExep.Size = new System.Drawing.Size(327, 20);
+            this.textExep.TabIndex = 17;
+            // 
             // Drawing
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ControlDarkDark;
             this.ClientSize = new System.Drawing.Size(629, 409);
+            this.Controls.Add(this.textExep);
+            this.Controls.Add(this.random);
             this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.labelValue);
             this.Controls.Add(this.labelY3);
@@ -228,5 +249,7 @@
         private System.Windows.Forms.Label labelY3;
         private System.Windows.Forms.Label labelValue;
         private System.Windows.Forms.PictureBox pictureBox1;
+        private System.Windows.Forms.Button random;
+        private System.Windows.Forms.TextBox textExep;
     }
 }

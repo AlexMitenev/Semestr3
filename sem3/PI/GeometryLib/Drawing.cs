@@ -20,13 +20,21 @@ namespace IsRightTrangles
 
         private void DrawIt_Click(object sender, EventArgs e)
         {
-            x1 = Convert.ToInt32(textX1.Text);
-            y1 = Convert.ToInt32(textY1.Text);
-            x2 = Convert.ToInt32(textX2.Text);
-            y2 = Convert.ToInt32(textY2.Text);
-            x3 = Convert.ToInt32(textX3.Text);
-            y3 = Convert.ToInt32(textY3.Text);
-
+            textExep.Text = "";
+            try
+            {
+                x1 = Convert.ToInt32(textX1.Text);
+                y1 = Convert.ToInt32(textY1.Text);
+                x2 = Convert.ToInt32(textX2.Text);
+                y2 = Convert.ToInt32(textY2.Text);
+                x3 = Convert.ToInt32(textX3.Text);
+                y3 = Convert.ToInt32(textY3.Text);
+            }
+            catch (SystemException)
+            {
+                textExep.Text = "Incorrect input value";
+            }
+            textValue.Text = Lib.RightTrangle.IsRightTrangle(x1, y1, x2, y2, x3, y3).ToString();
             pictureBox1.Refresh();
         }
 
@@ -39,8 +47,18 @@ namespace IsRightTrangles
             e.Graphics.DrawLine(pen, p1, p2);
             e.Graphics.DrawLine(pen, p2, p3);
             e.Graphics.DrawLine(pen, p3, p1);
+        }
 
-            textValue.Text = Lib.RightTrangle.IsRightTrangle(x1, y1, x2, y2, x3, y3).ToString();
+        private void random_Click(object sender, EventArgs e)
+        {
+            Random rnd = new Random();
+            int maxValue = 300;
+            textX1.Text = rnd.Next(maxValue).ToString();
+            textY1.Text = rnd.Next(maxValue).ToString();
+            textX2.Text = rnd.Next(maxValue).ToString();
+            textY2.Text = rnd.Next(maxValue).ToString();
+            textX3.Text = rnd.Next(maxValue).ToString();
+            textY3.Text = rnd.Next(maxValue).ToString();
         }
 
     }
