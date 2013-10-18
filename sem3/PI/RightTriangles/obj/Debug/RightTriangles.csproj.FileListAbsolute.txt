@@ -1,0 +1,12 @@
+c:\users\alex\documents\visual studio 2012\Projects\RightTriangles\RightTriangles\bin\Debug\RightTriangles.exe.config
+c:\users\alex\documents\visual studio 2012\Projects\RightTriangles\RightTriangles\bin\Debug\RightTriangles.exe
+c:\users\alex\documents\visual studio 2012\Projects\RightTriangles\RightTriangles\bin\Debug\RightTriangles.pdb
+c:\users\alex\documents\visual studio 2012\Projects\RightTriangles\RightTriangles\bin\Debug\GeometryLib.dll
+c:\users\alex\documents\visual studio 2012\Projects\RightTriangles\RightTriangles\bin\Debug\nunit.framework.dll
+c:\users\alex\documents\visual studio 2012\Projects\RightTriangles\RightTriangles\bin\Debug\GeometryLib.pdb
+c:\users\alex\documents\visual studio 2012\Projects\RightTriangles\RightTriangles\bin\Debug\nunit.framework.xml
+c:\users\alex\documents\visual studio 2012\Projects\RightTriangles\RightTriangles\obj\Debug\RightTriangles.csprojResolveAssemblyReference.cache
+c:\users\alex\documents\visual studio 2012\Projects\RightTriangles\RightTriangles\obj\Debug\RightTriangles.Properties.Resources.resources
+c:\users\alex\documents\visual studio 2012\Projects\RightTriangles\RightTriangles\obj\Debug\RightTriangles.csproj.GenerateResource.Cache
+c:\users\alex\documents\visual studio 2012\Projects\RightTriangles\RightTriangles\obj\Debug\RightTriangles.exe
+c:\users\alex\documents\visual studio 2012\Projects\RightTriangles\RightTriangles\obj\Debug\RightTriangles.pdb

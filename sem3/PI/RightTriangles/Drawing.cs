@@ -34,7 +34,8 @@ namespace IsRightTrangles
             {
                 textExep.Text = "Incorrect input value";
             }
-            textValue.Text = Lib.RightTrangle.IsRightTrangle(x1, y1, x2, y2, x3, y3).ToString();
+
+            textValue.Text = Lib.RightTrangle.IsRightTriangle(x1, y1, x2, y2, x3, y3).ToString();
             pictureBox1.Refresh();
         }
 
@@ -44,6 +45,7 @@ namespace IsRightTrangles
             Point p2 = new Point(x2, y2);
             Point p3 = new Point(x3, y3);
             Pen pen = new Pen(Color.Black);
+            e.Graphics.SmoothingMode = System.Drawing.Drawing2D.SmoothingMode.HighQuality;
             e.Graphics.DrawLine(pen, p1, p2);
             e.Graphics.DrawLine(pen, p2, p3);
             e.Graphics.DrawLine(pen, p3, p1);

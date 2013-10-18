@@ -223,6 +223,7 @@
             this.Controls.Add(this.textY3);
             this.Controls.Add(this.textValue);
             this.Controls.Add(this.DrawIt);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.Name = "Drawing";
             this.Text = "Drawing";
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();

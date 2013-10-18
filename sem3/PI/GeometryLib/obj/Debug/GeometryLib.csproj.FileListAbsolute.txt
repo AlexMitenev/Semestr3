@@ -1,0 +1,5 @@
+c:\users\alex\documents\visual studio 2012\Projects\RightTriangles\GeometryLib\bin\Debug\GeometryLib.dll
+c:\users\alex\documents\visual studio 2012\Projects\RightTriangles\GeometryLib\bin\Debug\GeometryLib.pdb
+c:\users\alex\documents\visual studio 2012\Projects\RightTriangles\GeometryLib\obj\Debug\GeometryLib.csprojResolveAssemblyReference.cache
+c:\users\alex\documents\visual studio 2012\Projects\RightTriangles\GeometryLib\obj\Debug\GeometryLib.dll
+c:\users\alex\documents\visual studio 2012\Projects\RightTriangles\GeometryLib\obj\Debug\GeometryLib.pdb
