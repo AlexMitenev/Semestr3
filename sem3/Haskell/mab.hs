@@ -53,7 +53,8 @@ remove m@(M  heigh  pair@(key, values)  l  r) k
 						minElem m@( M _ n E E ) = m
 						minElem ( M _ _ l _ )   = minElem l
 
+test = foldl insert E [(1,2),(1,3),(2,2),(5,3),(8,9), (10,5)]
 
 fold _ E acc              = acc
-fold f ( M _ n l r ) acc  = fold f l (f n : (fold f r acc))
+fold f ( M _ (k, v) l r ) acc  = fold f l (map f v : (fold f r acc))
 
