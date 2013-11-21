@@ -25,3 +25,6 @@ isEqual E E = True
 isEqual (N n1 l1 r1) (N n2 l2 r2) = (n1 == n2)      && 
 									 isEqual l1 l2  && 
 									 isEqual r1 r2
+
+fold _ E acc                   = acc
+fold f ( M a l r ) acc  = fold f l (map f a : (fold f r acc))
