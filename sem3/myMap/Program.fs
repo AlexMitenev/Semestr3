@@ -5,44 +5,45 @@ open System.Windows.Forms
 open System.Drawing
 
 let mainForm =
- 
-    let mutable mapFactorKoef = 1.0
-    //BUTTONS and TEXTBOX
 
     let form = new Form(Text = "Main form", Width = 640, Height = 500)
-                                
-    let up = new Button(Text = "up", Left = 500,
-                    Top = 100, Width = 80)
 
-    let down = new Button(Text = "down", Left = 500,
-                    Top = 120, Width = 80)
-    
-    let left = new Button(Text = "left", Left = 500,
-                    Top = 140, Width = 80)
+    //BUTTONS and TEXTBOX
 
-    let right = new Button(Text = "right", Left = 500,
-                    Top = 160, Width = 80)
+    let TBLeft = 500
+    let TBWidth = 80
+    let TBEnabled = false
+    let TBFactory text top = 
+        new TextBox(Text = text, Width = TBWidth, Enabled = TBEnabled,
+                    Top = top, Left = TBLeft)   
 
-    let plus = new Button(Text = "+", Left = 500, Enabled = false,
-                    Top = 180, Width = 80)
+    let buttonLeft = 500
+    let buttonWidth = 80
+    let buttonFactory text top = 
+        new Button(Text = text, Left = buttonLeft,
+                   Top = top, Width = buttonWidth)
+                                  
+    let up    = buttonFactory "^" 100
+    let down  = buttonFactory "v" 120
+    let left  = buttonFactory "<" 140
+    let right = buttonFactory ">" 160
+    let plus  = buttonFactory "+" 180
+    let minus = buttonFactory "-" 200
 
-    let minus = new Button(Text = "-", Left = 500, Enabled = false,
-                    Top = 200, Width = 80)
+    let coords = TBFactory "" 250              
+    let sumDistanse = TBFactory "0.0" 280 
 
-    let coords = new TextBox(Text = "", Width = 80, Enabled = false,
-                            Top = 250, Left = 500)                
-
-    let sumDistanse = new TextBox(Text = "0.0", Width = 80, Enabled = false,
-                            Top = 280, Left = 500) 
     //Picture
 
     let map = new PictureBox(Height = 1500, Width = 1500)
-    let img = Image.FromFile("map.jpg")
-    map.BackgroundImage <- img
+    map.SizeMode <-  PictureBoxSizeMode.StretchImage
+    let img = Image.FromFile("map.jpg")   
+    map.Image <- img
 
     // Buttons Clicks
-    let step = 20
-    let mapSize = 800
+    let step    = 20
+    let minMapSize = 700
+    let maxMapSize = 4000
 
     up.Click.Add(fun _ -> 
         match map.Top with
@@ -51,7 +52,7 @@ let mainForm =
 
     down.Click.Add(fun _ -> 
         match map.Top with
-            |n when n > -(mapSize) -> map.Top <- map.Top - step
+            |n when n > -(map.Height - form.Height) -> map.Top <- map.Top - step
             |n -> ())
 
     left.Click.Add(fun _ -> 
@@ -61,26 +62,41 @@ let mainForm =
 
     right.Click.Add(fun _ -> 
         match map.Left with
-            |n when n > -(mapSize) -> map.Left <- map.Left - step
+            |n when n > -(map.Width - form.Width) -> map.Left <- map.Left - step
             |n -> ())
-      
+
+    minus.Click.Add(fun _ -> 
+        match map.Height with
+        | n when n > minMapSize ->
+            map.Height <- map.Height - step
+            map.Width <- map.Width - step
+        | _ -> ())
+
+    plus.Click.Add(fun _ -> 
+        match map.Height with
+        | n when n < maxMapSize ->
+            map.Height <- map.Height + step
+            map.Width <- map.Width + step
+        | _ -> ())
+
     //Coords
-    let getCoords (a : MouseEventArgs) = coords.Text <- string (a.X) + "," + string(a.Y)
+    let getCoords (a : MouseEventArgs) = coords.Text <- string (a.X) + ", " + string(a.Y)
     map.MouseMove |> Event.add getCoords
 
     //Sum of Distanses
-    let redPen = new Pen(Color.Firebrick, 1.0f)
+    let redPen = new Pen(Color.Firebrick, 2.0f)
     
     let sumDist (a : MouseEventArgs, b : MouseEventArgs) = 
         let sum = 
-            float ((a.X - b.X) * (a.X - b.X) + (a.Y - b.Y) * (a.Y - b.Y)) |>
-            sqrt |> 
-            (+) (float sumDistanse.Text)|>
-            string
-        sumDistanse.Text  <- sum
+            float ((a.X - b.X) * (a.X - b.X) + (a.Y - b.Y) * (a.Y - b.Y)) 
+            |> sqrt  
+            |> (+) (float sumDistanse.Text)
+            |> string
         let painting (e : PaintEventArgs) = e.Graphics.DrawLine(redPen, Point(a.X,a.Y), Point(b.X, b.Y))
+
+        sumDistanse.Text  <- sum
         map.Paint.Add painting
-    
+
     map.MouseClick |> Event.pairwise |> Event.add sumDist
     map.MouseClick |> Event.add (fun _ -> map.Refresh())
 
