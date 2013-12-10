@@ -3,13 +3,19 @@ open NUnit.Framework
 open FsUnit
 open System.Text.RegularExpressions
 
-let mailTest expr = 
-    let beforeAt = "^[-a-z0-9!#$%&'*+/=?^_`{|}~]+(\.[-a-z0-9!#$%&'*+/=?^_`{|}~]+)*@"
-    let afterAt = "[-0-9A-Za-z_^\.]{1,192}\.[a-zA-Z]{2,6}$"
-    let doubleDot = new Regex("\.\.")
+
+
+
+let mailTest mail = 
+    let first = "^[-a-zA-Z_]"
+    let siteName = "([\.]?[-a-z0-9!#$%&'*+/=?^_`{|}~]+)*@"
+    let beforeAt = first + siteName
+    let afterAt = "[-0-9A-Za-z_]{1,64}\.[a-zA-Z]{2,6}$"
     let sum = beforeAt + afterAt
     let reg = new Regex(sum)
-    reg.IsMatch(expr) &&  not <| doubleDot.IsMatch(expr)
+    reg.IsMatch mail
+
+
 
 [<TestFixture>] 
 type ``Good tests`` ()=
