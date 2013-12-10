@@ -3,62 +3,62 @@ open NUnit.Framework
 open FsUnit
 open System.Text.RegularExpressions
 
-
-
-
-let mailTest mail = 
+type MailCheck() =
     let first = "^[-a-zA-Z_]"
     let siteName = "([\.]?[-a-z0-9!#$%&'*+/=?^_`{|}~]+)*@"
     let beforeAt = first + siteName
     let afterAt = "[-0-9A-Za-z_]{1,64}\.[a-zA-Z]{2,6}$"
     let sum = beforeAt + afterAt
     let reg = new Regex(sum)
-    reg.IsMatch mail
-
+    member public this.Check mail =
+        reg.IsMatch mail
 
 
 [<TestFixture>] 
 type ``Good tests`` ()=
+    let mc = new MailCheck()
 
     [<Test>] member x.
      ``short email`` ()=
-            mailTest "a@b.cc" |> should be True
+            mc.Check "a@b.cc" |> should be True
 
     [<Test>] member x.
      ``enother standart email`` ()=
-            mailTest "victor.polozov@mail.ru" |> should be True
+            mc.Check "victor.polozov@mail.ru" |> should be True
 
     [<Test>] member x.
      ``.info domen`` ()=
-            mailTest "my@domain.info" |> should be True
+            mc.Check "my@domain.info" |> should be True
 
     [<Test>] member x.
      ``simbol domen`` ()=
-            mailTest "_.1@mail.com" |> should be True
+            mc.Check "_.1@mail.com" |> should be True
   
     [<Test>] member x.
      ``long domain`` ()=
-            mailTest "coins_department@hermitage.museum" |> should be True
+            mc.Check "coins_department@hermitage.museum" |> should be True
 
 [<TestFixture>] 
 type ``Bad emails`` ()=
+    
+    let mc = new MailCheck()
 
     [<Test>] member x.
      ``1 char in domain top level`` ()=
-            mailTest "a@b.c" |> should be False
+            mc.Check "a@b.c" |> should be False
 
     [<Test>] member x.
      ``double dot domain`` ()=
-            mailTest "a..b@mail.ru" |> should be False
+            mc.Check "a..b@mail.ru" |> should be False
 
     [<Test>] member x.
      ``domain without body`` ()=
-            mailTest ".a@mail.ru" |> should be False
+            mc.Check ".a@mail.ru" |> should be False
 
     [<Test>] member x.
      ``long domain top level`` ()=
-            mailTest "yo@domain.somedomain" |> should be False
+            mc.Check "yo@domain.somedomain" |> should be False
 
     [<Test>] member x.
      ``only one num in body`` ()=
-            mailTest "1@mail.ru" |> should be False
+            mc.Check "1@mail.ru" |> should be False
