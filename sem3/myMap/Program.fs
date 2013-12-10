@@ -4,34 +4,33 @@ open System
 open System.Windows.Forms
 open System.Drawing
 
+type Creator() =
+        let Left = 500
+        let Width = 80
+        let TBEnabled = false
+        member this.TBFactory text top = 
+            new TextBox(Text = text, Width = Width, Enabled = TBEnabled,
+                        Top = top, Left = Left)   
+        member this.ButtonFactory text top = 
+            new Button(Text = text, Left = Left,
+                   Top = top, Width = Width)
+
 let mainForm =
 
     let form = new Form(Text = "Main form", Width = 640, Height = 500)
 
     //BUTTONS and TEXTBOX
-
-    let TBLeft = 500
-    let TBWidth = 80
-    let TBEnabled = false
-    let TBFactory text top = 
-        new TextBox(Text = text, Width = TBWidth, Enabled = TBEnabled,
-                    Top = top, Left = TBLeft)   
-
-    let buttonLeft = 500
-    let buttonWidth = 80
-    let buttonFactory text top = 
-        new Button(Text = text, Left = buttonLeft,
-                   Top = top, Width = buttonWidth)
+    let cr = new Creator()                    
                                   
-    let up    = buttonFactory "^" 100
-    let down  = buttonFactory "v" 120
-    let left  = buttonFactory "<" 140
-    let right = buttonFactory ">" 160
-    let plus  = buttonFactory "+" 180
-    let minus = buttonFactory "-" 200
+    let up    = cr.ButtonFactory "^" 100
+    let down  = cr.ButtonFactory "v" 120
+    let left  = cr.ButtonFactory "<" 140
+    let right = cr.ButtonFactory ">" 160
+    let plus  = cr.ButtonFactory "+" 180
+    let minus = cr.ButtonFactory "-" 200
 
-    let coords = TBFactory "" 250              
-    let sumDistanse = TBFactory "0.0" 280 
+    let coords = cr.TBFactory "" 250              
+    let sumDistanse = cr.TBFactory "0.0" 280 
 
     //Picture
 
