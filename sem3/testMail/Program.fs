@@ -5,7 +5,7 @@ open System.Text.RegularExpressions
 
 type MailCheck() =
     let first = "^[-a-zA-Z_]"
-    let siteName = "([\.]?[-a-z0-9!#$%&'*+/=?^_`{|}~]+)*@"
+    let siteName = "([\.]?[-a-zA-Z0-9!#$%&'*+/=?^_`{|}~]+)*@"
     let beforeAt = first + siteName
     let afterAt = "[-0-9A-Za-z_]{1,64}\.[a-zA-Z]{2,6}$"
     let sum = beforeAt + afterAt
